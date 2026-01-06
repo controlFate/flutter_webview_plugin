@@ -392,7 +392,12 @@ class WebviewManager {
 
         webView.getSettings().setSupportMultipleWindows(supportMultipleWindows);
 
-        webView.getSettings().setAppCacheEnabled(appCacheEnabled);
+        // 设置缓存模式，替代setAppCacheEnabled
+// 常用模式包括：
+// - LOAD_DEFAULT: 默认行为，根据缓存头决定是否使用缓存
+// - LOAD_CACHE_ELSE_NETWORK: 优先使用缓存，适合离线应用
+// - LOAD_NO_CACHE: 完全不使用缓存，始终从网络加载
+        webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
 
         webView.getSettings().setAllowFileAccessFromFileURLs(allowFileURLs);
         webView.getSettings().setAllowUniversalAccessFromFileURLs(allowFileURLs);
